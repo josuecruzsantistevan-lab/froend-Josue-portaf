@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+html, body {
+  background-color: #020510;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
