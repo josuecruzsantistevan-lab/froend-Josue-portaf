@@ -3,19 +3,21 @@ import { useState, useEffect } from 'react';
 /**
  * Custom typewriter hook to cycle through an array of words
  * (type → pause → delete → next word) without any external libraries.
+ * Starts only when active is true.
  */
 export default function useTypewriter(
   words = [],
   typeSpeed = 85,
   deleteSpeed = 45,
-  pauseDuration = 1800
+  pauseDuration = 1800,
+  active = true
 ) {
   const [wordIndex, setWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    if (!words || words.length === 0) return;
+    if (!active || !words || words.length === 0) return;
 
     const currentWord = words[wordIndex % words.length];
     let timer;
@@ -46,7 +48,7 @@ export default function useTypewriter(
     }
 
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, wordIndex, words, typeSpeed, deleteSpeed, pauseDuration]);
+  }, [active, currentText, isDeleting, wordIndex, words, typeSpeed, deleteSpeed, pauseDuration]);
 
   return currentText;
 }

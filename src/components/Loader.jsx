@@ -136,7 +136,7 @@ function sampleTextParticles(line1, line2, maxCount = 3200) {
    LOADER COMPONENT
    ═══════════════════════════════════════════════════════════════ */
 
-export default function Loader({ onComplete }) {
+export default function Loader({ onComplete, onExiting }) {
   const [hasStarted, setHasStarted] = useState(false);
   const progress = useProgress(4200, hasStarted);
   const [phase, setPhase] = useState('intro');   // intro → loading → complete → exiting → done
@@ -162,7 +162,7 @@ export default function Loader({ onComplete }) {
   useEffect(() => { triggerThunderRef.current = triggerThunder; }, [triggerThunder]);
 
   const reducedMotion = useMemo(
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
     []
   );
 
@@ -196,29 +196,27 @@ export default function Loader({ onComplete }) {
 
   /* ── Phase transitions ── */
   useEffect(() => {
-    if (progress >= 100 && phase === 'loading') {
-      setPhase('complete');
-      // One bigger thunder when progress reaches 100% and lightning fades out
-      triggerThunder({ isBig: true, delay: 50 });
+    if (progress >= 100 && (phase === 'loading' || phase === 'intro')) {
+      setPhase('exiting');
+      onExiting?.();
+      // 0ms: Big thunder plays immediately at 100%
+      triggerThunder({ isBig: true, delay: 0 });
+      // Fade out audio smoothly over 500ms
+      fadeOutAudio(0.5);
     }
-  }, [progress, phase, triggerThunder]);
+  }, [progress, phase, triggerThunder, fadeOutAudio, onExiting]);
 
   useEffect(() => {
     let timer;
-    if (phase === 'complete') {
-      timer = setTimeout(() => {
-        setPhase('exiting');
-        // Fade the audio out smoothly at the exit transition (300ms)
-        fadeOutAudio(0.3);
-      }, 400);
-    } else if (phase === 'exiting') {
+    if (phase === 'exiting') {
+      // 600ms: Loader text & bar blur/fade complete, unmount loader
       timer = setTimeout(() => {
         setPhase('done');
         onComplete?.();
-      }, 1500);
+      }, 600);
     }
     return () => clearTimeout(timer);
-  }, [phase, onComplete, fadeOutAudio]);
+  }, [phase, onComplete]);
 
   /* ── Text particle formation timer (~1.3 s after start) ── */
   useEffect(() => {
@@ -345,92 +343,11 @@ export default function Loader({ onComplete }) {
 
       ctx.clearRect(0, 0, w, h);
 
-      /* ─── 3. BACKGROUND: Layered nebula/galaxy gradients in blues & cyan ─── */
-      ctx.fillStyle = '#020510';
-      ctx.fillRect(0, 0, w, h);
-
-      // Layer 1: Navy & deep blue atmospheric spread
-      const neb1 = ctx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.45, Math.max(w, h) * 0.85);
-      neb1.addColorStop(0, '#0c1a40');
-      neb1.addColorStop(0.35, '#071126');
-      neb1.addColorStop(0.7, '#040917');
-      neb1.addColorStop(1, '#020510');
-      ctx.fillStyle = neb1;
-      ctx.fillRect(0, 0, w, h);
-
-      // Layer 2: Core electric nebula glow (cyan + royal blue)
-      const neb2 = ctx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.45, Math.min(w, h) * 0.65);
-      neb2.addColorStop(0, 'rgba(37, 99, 235, 0.28)');
-      neb2.addColorStop(0.3, 'rgba(14, 165, 233, 0.12)');
-      neb2.addColorStop(0.65, 'rgba(30, 58, 138, 0.08)');
-      neb2.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = neb2;
-      ctx.fillRect(0, 0, w, h);
-
-      // Layer 3: Subtle cyan/teal dust cloud offset slightly
-      const neb3 = ctx.createRadialGradient(w * 0.52, h * 0.42, 0, w * 0.52, h * 0.42, Math.min(w, h) * 0.45);
-      neb3.addColorStop(0, 'rgba(6, 182, 212, 0.14)');
-      neb3.addColorStop(0.5, 'rgba(29, 78, 216, 0.06)');
-      neb3.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = neb3;
-      ctx.fillRect(0, 0, w, h);
-
-      /* ─── 3. STARS: ~200 stars with varied size, brightness & slow twinkle ─── */
-      for (const s of stars) {
-        const twinkle = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(now * 0.001 * s.spd + s.phi));
-        const alpha = s.baseAlpha * twinkle;
-        ctx.beginPath();
-        ctx.arc(s.x * w, s.y * h, s.r * 0.5, 0, Math.PI * 2);
-
-        if (s.colorType === 'cyan') {
-          ctx.fillStyle = `rgba(165, 243, 252, ${alpha})`;
-        } else if (s.colorType === 'blue') {
-          ctx.fillStyle = `rgba(147, 197, 253, ${alpha})`;
-        } else {
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-        }
-        ctx.fill();
-      }
-
-      /* ─── 3. SHOOTING STARS: Diagonal cross every 3-5 seconds ─── */
-      if (now - lastShoot > 3000 + Math.random() * 2000) {
-        lastShoot = now;
-        shooters.push({
-          x: w * 0.15 + Math.random() * w * 0.75,
-          y: -10,
-          vx: -(2.5 + Math.random() * 3.5),
-          vy: 3.5 + Math.random() * 4.5,
-          life: 1,
-          dec: 0.012 + Math.random() * 0.012,
-          tail: 50 + Math.random() * 60,
-        });
-      }
-      for (let i = shooters.length - 1; i >= 0; i--) {
-        const s = shooters[i];
-        s.x += s.vx;
-        s.y += s.vy;
-        s.life -= s.dec;
-        if (s.life <= 0) { shooters.splice(i, 1); continue; }
-        const speed = Math.hypot(s.vx, s.vy);
-        const tx = s.x - (s.vx / speed) * s.tail;
-        const ty = s.y - (s.vy / speed) * s.tail;
-        const g = ctx.createLinearGradient(s.x, s.y, tx, ty);
-        g.addColorStop(0, `rgba(224, 242, 254, ${s.life * 0.95})`);
-        g.addColorStop(0.4, `rgba(96, 165, 250, ${s.life * 0.7})`);
-        g.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.beginPath();
-        ctx.moveTo(s.x, s.y);
-        ctx.lineTo(tx, ty);
-        ctx.strokeStyle = g;
-        ctx.lineWidth = 1.4;
-        ctx.stroke();
-      }
-
       /* ─── 1 & 2. LIGHTNING & FORKED BRANCHES (activates on click to enter) ─── */
       if (started) {
         if (curPhase === 'exiting') {
-          lightAlpha *= 0.93;
-          if (Math.random() < 0.15) lightAlpha *= 0.25;
+          lightAlpha *= 0.88;
+          if (Math.random() < 0.2) lightAlpha *= 0.3;
         } else {
           lightAlpha = 1;
         }
@@ -572,22 +489,18 @@ export default function Loader({ onComplete }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-[#020510]"
-      style={{
-        opacity: exiting ? 0 : 1,
-        // Starfield and canvas remain visible for ~0.4s before overlay fades out
-        transition: exiting ? 'opacity 0.8s ease 0.4s' : 'none',
-      }}
+      className={`fixed inset-0 z-50 bg-transparent ${
+        exiting ? 'pointer-events-none' : 'pointer-events-auto'
+      }`}
     >
-      {/* Canvas — nebula + stars + lightning + text particles */}
-      {!reducedMotion && <canvas ref={canvasRef} className="absolute inset-0" />}
-
-      {/* Reduced-motion fallback */}
-      {reducedMotion && (
-        <div
-          className="absolute inset-0"
+      {/* Canvas — lightning + text particles */}
+      {!reducedMotion && (
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 50% 45%, #0c1a40, #040917 50%, #020510)',
+            opacity: exiting ? 0 : 1,
+            transition: 'opacity 400ms ease-out',
           }}
         />
       )}
@@ -598,6 +511,11 @@ export default function Loader({ onComplete }) {
         aria-label={isMuted ? 'Unmute thunder sound' : 'Mute thunder sound'}
         title={isMuted ? 'Unmute thunder' : 'Mute thunder'}
         className="absolute top-5 right-5 z-[70] p-2.5 rounded-full bg-slate-900/60 hover:bg-slate-800/80 border border-blue-500/25 hover:border-blue-400 text-blue-300 hover:text-white backdrop-blur-md transition-all duration-200 cursor-pointer shadow-lg"
+        style={{
+          opacity: exiting ? 0 : 1,
+          transition: 'opacity 300ms ease',
+          pointerEvents: exiting ? 'none' : 'auto',
+        }}
       >
         {isMuted ? (
           /* Muted Icon: Speaker with slash */
@@ -650,9 +568,11 @@ export default function Loader({ onComplete }) {
         <div
           className="relative z-10 flex flex-col items-center justify-center h-full px-4"
           style={{
-            filter: exiting ? 'blur(12px)' : 'blur(0px)',
+            filter: exiting ? (reducedMotion ? 'none' : 'blur(12px)') : 'blur(0px)',
             opacity: exiting ? 0 : 1,
-            transition: 'filter 0.5s ease, opacity 0.5s ease',
+            transition: reducedMotion
+              ? 'opacity 250ms ease'
+              : 'filter 600ms ease, opacity 600ms ease',
           }}
         >
           {/* Text — fades in after particles converge */}

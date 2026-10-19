@@ -27,11 +27,11 @@ export const portfolioContent = {
     // Action buttons
     buttons: {
       primary: {
-        text: "Projects",
+        text: "Proyectos",
         href: "#portfolio",
       },
       secondary: {
-        text: "Contact Me",
+        text: "Contáctame",
         href: "#contact",
       },
     },

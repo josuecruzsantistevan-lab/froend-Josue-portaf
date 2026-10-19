@@ -1,9 +1,37 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
-html, body {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   background-color: #020510;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  color: #ffffff;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+::selection {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+*::selection {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+::-moz-selection {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+}
+
+*::-moz-selection {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
 }
