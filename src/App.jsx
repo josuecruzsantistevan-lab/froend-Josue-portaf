@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import About from './components/About';
 import StarBackground from './components/StarBackground';
 import { TIMELINE } from './config/timeline';
 
@@ -17,6 +18,22 @@ function App() {
       timersRef.current.forEach(clearTimeout);
     };
   }, []);
+
+  // Bloquear el scroll de la página mientras el cargador y botón 'Click to enter' estén activos
+  useEffect(() => {
+    if (isLoaderMounted && phase !== 'revealed') {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      window.scrollTo(0, 0);
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isLoaderMounted, phase]);
 
   // 0ms: Progress = 100%. Big thunder plays, Loader text/bar blur & fade over 600ms, lightning fades out ~400ms
   const handleLoaderExiting = useCallback(() => {
@@ -103,28 +120,21 @@ function App() {
       {/* 3. Floating Navbar: Staggered reveal at 900ms with slide down & mascot pop-in */}
       <Navbar isRevealed={isRevealed} />
 
-      {/* 4. Main Page Content: Mounted from beginning, z-20 above StarBackground, always interactive */}
-      <div className="relative z-20">
+      {/* 4. Main Page Content: Oculto e inaccesible hasta que se entra y revela el sitio */}
+      <div 
+        className="relative z-20 transition-opacity duration-700 ease-out"
+        style={{
+          opacity: isRevealed ? 1 : 0,
+          pointerEvents: isRevealed ? 'auto' : 'none',
+          visibility: isRevealed ? 'visible' : 'hidden',
+        }}
+      >
         <main>
           {/* Hero Section (#home) with internal staggered revealStage */}
           <Hero revealStage={revealStage} />
 
-          {/* Placeholder Section: About (#about) */}
-          <section
-            id="about"
-            className="min-h-screen flex items-center justify-center border-t border-white/5 px-4 text-center scroll-mt-24 bg-transparent"
-            style={{ scrollMarginTop: '6rem' }}
-          >
-            <div className="max-w-2xl mx-auto space-y-3">
-              <span className="text-xs font-mono uppercase tracking-widest text-blue-400">
-                Section
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white">About Me</h2>
-              <p className="text-white/50 text-sm sm:text-base">
-                Próximamente: Información sobre mi trayectoria y habilidades.
-              </p>
-            </div>
-          </section>
+          {/* Sección Sobre Mí (#about) fiel al diseño de la imagen */}
+          <About />
 
           {/* Placeholder Section: Portfolio (#portfolio) */}
           <section
