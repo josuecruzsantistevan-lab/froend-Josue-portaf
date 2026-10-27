@@ -97,23 +97,44 @@ export default function Portfolio() {
                   {/* Cabecera de la tarjeta: Ilustración / Banner y badges */}
                   <div className="space-y-4">
                     {/* Visual Banner Preview */}
-                    <div className="relative h-44 w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#0c1a36] via-[#081226] to-[#040814] border border-blue-500/20 flex flex-col items-center justify-center p-4 text-center group-hover:border-blue-400/40 transition-colors">
-                      {/* Grid sutil de fondo */}
-                      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
-                      
-                      {/* Icono central temático */}
-                      <div className="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-400/30 flex items-center justify-center shadow-lg shadow-blue-950/80 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all duration-300 z-10">
-                        <Code className="w-7 h-7 text-cyan-400" />
-                      </div>
+                    <div className="relative h-44 w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#0c1a36] via-[#081226] to-[#040814] border border-blue-500/20 flex flex-col items-center justify-center text-center group-hover:border-blue-400/40 transition-colors">
+                      {project.thumbnail ? (
+                        <div className="relative w-full h-full">
+                          <img
+                            src={project.thumbnail}
+                            alt={project.title}
+                            className="w-full h-full object-cover object-top opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#080f22] via-[#080f22]/30 to-transparent" />
+                          <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between">
+                            <span className="text-white font-bold text-xs tracking-tight drop-shadow-md">
+                              {project.title.split(' - ')[0]}
+                            </span>
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                              {project.status}
+                            </span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="p-4 flex flex-col items-center justify-center">
+                          {/* Grid sutil de fondo */}
+                          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+                          
+                          {/* Icono central temático */}
+                          <div className="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-400/30 flex items-center justify-center shadow-lg shadow-blue-950/80 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all duration-300 z-10">
+                            <Code className="w-7 h-7 text-cyan-400" />
+                          </div>
 
-                      <div className="mt-2.5 z-10">
-                        <span className="text-white font-bold text-sm tracking-tight block drop-shadow-sm">
-                          {project.title.split(' - ')[0]}
-                        </span>
-                        <span className="text-slate-400 text-[11px] font-mono">
-                          {project.year} • {project.status}
-                        </span>
-                      </div>
+                          <div className="mt-2.5 z-10">
+                            <span className="text-white font-bold text-sm tracking-tight block drop-shadow-sm">
+                              {project.title.split(' - ')[0]}
+                            </span>
+                            <span className="text-slate-400 text-[11px] font-mono">
+                              {project.year} • {project.status}
+                            </span>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Meta tags */}

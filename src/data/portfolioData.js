@@ -28,6 +28,34 @@ export const projectsList = [
       'Respaldos de base de datos automatizados en la nube (Railway)',
       'Interfaz táctil optimizada para rapidez en caja y atención al cliente'
     ],
+    thumbnail: '/projects/natural-green/2-mesas-pedidos.png',
+    images: [
+      {
+        url: '/projects/natural-green/1-login.png',
+        title: 'Inicio de Sesión y Acceso Seguro',
+        description: 'Autenticación con credenciales de usuario para inicio de turno.'
+      },
+      {
+        url: '/projects/natural-green/2-mesas-pedidos.png',
+        title: 'Gestión de Mesas y Pedidos para Llevar',
+        description: 'Monitor visual con estados en tiempo real (Libre, Ocupada/Espera, Servida).'
+      },
+      {
+        url: '/projects/natural-green/3-catalogo-productos.png',
+        title: 'Comanda y Catálogo de Productos',
+        description: 'Categorías dinámicas con buscador rápido y adición con un clic a la mesa.'
+      },
+      {
+        url: '/projects/natural-green/4-apertura-turno.png',
+        title: 'Apertura de Turno de Caja',
+        description: 'Ingreso obligatorio de monto base para cuadre transparente de caja.'
+      },
+      {
+        url: '/projects/natural-green/5-cierre-caja.png',
+        title: 'Cierre de Caja y Reportes Semanales',
+        description: 'Métricas de ventas y desglose por métodos de pago (Efectivo, Banco Pichincha, Banco Guayaquil).'
+      }
+    ],
     demoUrl: '#',
     githubUrl: '#'
   },
