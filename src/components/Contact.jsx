@@ -20,22 +20,52 @@ export default function Contact() {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  // Enviar formulario (abrir cliente de correo o feedback)
-  const handleSubmit = (e) => {
+  // Enviar formulario directamente al correo en segundo plano
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Preparar mailto con los datos
-    const mailtoSubject = encodeURIComponent(formData.subject || `Contacto desde Portafolio - ${formData.name}`);
-    const mailtoBody = encodeURIComponent(
-      `Hola Josué,\n\nMi nombre es: ${formData.name}\nCorreo: ${formData.email}\n\nMensaje:\n${formData.message}`
-    );
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${contactInfo.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Nuevo contacto de portafolio web: ${formData.name}`,
+          message: formData.message,
+          _subject: `Portafolio Web: ${formData.subject || formData.name}`,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
+      if (response.ok) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        // Fallback a mailto si el servicio no responde
+        const mailtoSubject = encodeURIComponent(formData.subject || `Contacto desde Portafolio - ${formData.name}`);
+        const mailtoBody = encodeURIComponent(
+          `Hola Josué,\n\nMi nombre es: ${formData.name}\nCorreo: ${formData.email}\n\nMensaje:\n${formData.message}`
+        );
+        window.location.href = `mailto:${contactInfo.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
+        setSubmitted(true);
+      }
+    } catch (err) {
+      // Fallback a mailto en caso de error de red
+      const mailtoSubject = encodeURIComponent(formData.subject || `Contacto desde Portafolio - ${formData.name}`);
+      const mailtoBody = encodeURIComponent(
+        `Hola Josué,\n\nMi nombre es: ${formData.name}\nCorreo: ${formData.email}\n\nMensaje:\n${formData.message}`
+      );
       window.location.href = `mailto:${contactInfo.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
-    }, 600);
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -197,10 +227,10 @@ export default function Contact() {
                     ✓
                   </div>
                   <h4 className="text-white font-bold text-lg">
-                    ¡Gracias por tu mensaje!
+                    ¡Mensaje enviado con éxito!
                   </h4>
                   <p className="text-slate-300 text-xs sm:text-sm max-w-md mx-auto">
-                    Se ha abierto tu cliente de correo para enviar la solicitud a <strong>{contactInfo.email}</strong>. Te responderé lo antes posible.
+                    Tu mensaje ha sido enviado directamente a mi bandeja de entrada (<strong>{contactInfo.email}</strong>). Te responderé lo antes posible.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
