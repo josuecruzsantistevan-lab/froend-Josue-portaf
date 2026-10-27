@@ -33,27 +33,67 @@ export const projectsList = [
       {
         url: '/projects/natural-green/1-login.png',
         title: 'Inicio de Sesión y Acceso Seguro',
-        description: 'Autenticación con credenciales de usuario para inicio de turno.'
-      },
-      {
-        url: '/projects/natural-green/2-mesas-pedidos.png',
-        title: 'Gestión de Mesas y Pedidos para Llevar',
-        description: 'Monitor visual con estados en tiempo real (Libre, Ocupada/Espera, Servida).'
-      },
-      {
-        url: '/projects/natural-green/3-catalogo-productos.png',
-        title: 'Comanda y Catálogo de Productos',
-        description: 'Categorías dinámicas con buscador rápido y adición con un clic a la mesa.'
+        description: 'Autenticación con credenciales por usuario para control de turnos.'
       },
       {
         url: '/projects/natural-green/4-apertura-turno.png',
         title: 'Apertura de Turno de Caja',
-        description: 'Ingreso obligatorio de monto base para cuadre transparente de caja.'
+        description: 'Ingreso del monto base inicial para cuadre de caja transparente.'
+      },
+      {
+        url: '/projects/natural-green/2-mesas-pedidos.png',
+        title: 'Gestión de Mesas y Pedidos Activos',
+        description: 'Monitor visual con estados en tiempo real (Libre, Ocupada/Espera, Servida) y pedidos para llevar.'
+      },
+      {
+        url: '/projects/natural-green/3-catalogo-productos.png',
+        title: 'Comanda y Catálogo de Productos',
+        description: 'Categorización rápida de bebidas y productos con buscador y adición inmediata a la mesa.'
+      },
+      {
+        url: '/projects/natural-green/6-calculadora-sri.png',
+        title: 'Calculadora de Vuelto con Factura Electrónica SRI',
+        description: 'Módulo de cobro rápido con cálculo de cambio y toggle para emisión electrónica con validez tributaria SRI.'
+      },
+      {
+        url: '/projects/natural-green/7-calculadora-ticket.png',
+        title: 'Calculadora de Vuelto con Ticket de Consumo Interno',
+        description: 'Alternativa ágil para control interno del restaurante sin avanzar el secuencial tributario.'
+      },
+      {
+        url: '/projects/natural-green/8-factura-sri-impresa.png',
+        title: 'Factura Electrónica SRI Emitida con QR y Clave de Acceso',
+        description: 'Comprobante tributario real autorizado por el SRI con código QR, clave de acceso de 49 dígitos y desglose de IVA (15%).'
+      },
+      {
+        url: '/projects/natural-green/9-ticket-impreso.png',
+        title: 'Ticket Térmico de Consumo Interno',
+        description: 'Comprobante para cliente y cocina con detalle de orden, fecha y desglose de productos.'
+      },
+      {
+        url: '/projects/natural-green/11-registrar-salida.png',
+        title: 'Registro de Salida de Caja y Gastos Menores',
+        description: 'Módulo de auditoría para egresos de efectivo (compra de suministros, gas, etc.) con justificación.'
+      },
+      {
+        url: '/projects/natural-green/10-cierre-dia.png',
+        title: 'Arqueo y Cierre de Caja del Día',
+        description: 'Métricas diarias de pedidos completados, fondo inicial, recaudación en efectivo y registro de salidas de caja.'
       },
       {
         url: '/projects/natural-green/5-cierre-caja.png',
         title: 'Cierre de Caja y Reportes Semanales',
-        description: 'Métricas de ventas y desglose por métodos de pago (Efectivo, Banco Pichincha, Banco Guayaquil).'
+        description: 'Desglose detallado de ventas por día y por métodos de pago (Efectivo, Banco Pichincha, Banco Guayaquil).'
+      },
+      {
+        url: '/projects/natural-green/12-resumen-turno.png',
+        title: 'Resumen del Turno y Auditoría de Horarios',
+        description: 'Cronología operativa con horas de inicio de sesión, primer pedido, último pedido y alerta de caja abierta.'
+      },
+      {
+        url: '/projects/natural-green/13-db-railway-sri.png',
+        title: 'Base de Datos en Producción en Railway (MySQL)',
+        description: 'Persistencia en la nube de comprobantes fiscales con estado SRI AUTORIZADO, número de autorización y fecha.'
       }
     ],
     demoUrl: '#',
