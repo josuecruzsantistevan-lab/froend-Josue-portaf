@@ -3,6 +3,8 @@ import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Portfolio from './components/Portfolio';
+import Contact from './components/Contact';
 import StarBackground from './components/StarBackground';
 import { TIMELINE } from './config/timeline';
 
@@ -136,39 +138,11 @@ function App() {
           {/* Sección Sobre Mí (#about) fiel al diseño de la imagen */}
           <About />
 
-          {/* Placeholder Section: Portfolio (#portfolio) */}
-          <section
-            id="portfolio"
-            className="min-h-screen flex items-center justify-center border-t border-white/5 px-4 text-center scroll-mt-24 bg-transparent"
-            style={{ scrollMarginTop: '6rem' }}
-          >
-            <div className="max-w-2xl mx-auto space-y-3">
-              <span className="text-xs font-mono uppercase tracking-widest text-blue-400">
-                Section
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white">Portfolio</h2>
-              <p className="text-white/50 text-sm sm:text-base">
-                Próximamente: Galería de proyectos destacados.
-              </p>
-            </div>
-          </section>
+          {/* Sección Portfolio con pestañas interactivas: Projects, Certificates, Awards, Tech Stack */}
+          <Portfolio />
 
-          {/* Placeholder Section: Contact (#contact) */}
-          <section
-            id="contact"
-            className="min-h-screen flex items-center justify-center border-t border-white/5 px-4 text-center pb-24 scroll-mt-24 bg-transparent"
-            style={{ scrollMarginTop: '6rem' }}
-          >
-            <div className="max-w-2xl mx-auto space-y-3">
-              <span className="text-xs font-mono uppercase tracking-widest text-blue-400">
-                Section
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white">Contact</h2>
-              <p className="text-white/50 text-sm sm:text-base">
-                Próximamente: Formulario y vías de contacto directo.
-              </p>
-            </div>
-          </section>
+          {/* Sección Contacto interactivo (#contact) */}
+          <Contact />
         </main>
       </div>
     </div>

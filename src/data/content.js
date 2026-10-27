@@ -49,7 +49,7 @@ export const portfolioContent = {
     // Botón para ver o descargar el currículum
     resumeButton: {
       text: "Ver Currículum",
-      href: "#",
+      href: "/CV_Josue_David_Cruz_Santistevan.pdf",
     },
     // Botón para ver la sección de proyectos
     projectsButton: {
@@ -63,16 +63,23 @@ export const portfolioContent = {
     education: [
       {
         id: "edu-1",
-        title: "Universitas Brawijaya",
-        subtitle: "IT Edu | Faculty of Computer Science",
-        period: "2023 - Present",
+        title: "Universidad Técnica de Babahoyo",
+        subtitle: "Ingeniería en Sistemas de Información (5to semestre)",
+        period: "Presente",
         iconType: "university",
       },
       {
         id: "edu-2",
-        title: "SMKN WINONGAN",
-        subtitle: "Teknik Komputer dan Jaringan",
-        period: "2021 - 2024",
+        title: "Santander Open Academy / Google",
+        subtitle: "Certificación: Domina la IA con Gemini",
+        period: "Diciembre 2025",
+        iconType: "gemini",
+      },
+      {
+        id: "edu-3",
+        title: "Unidad Educativa Clemente Baquerizo",
+        subtitle: "Bachiller Técnico Industrial en Instalaciones Eléctricas",
+        period: "2018",
         iconType: "school",
       },
     ],
@@ -81,25 +88,27 @@ export const portfolioContent = {
     experience: [
       {
         id: "exp-1",
-        title: "Hology 9.0",
-        subtitle: "Staff Technology | UI/UX Designer",
-        period: "2024",
-        iconType: "hology",
+        title: "CimaCodex",
+        subtitle: "Full-Stack Developer & Founder",
+        description: "Stack: React, Node.js, Express, MySQL, Netlify.",
+        period: "Presente",
+        iconType: "cimacodex",
       },
       {
         id: "exp-2",
-        title: "Google Developer Groups (GDGs)",
-        extraTitle: "on Campus Brawijaya University",
-        subtitle: "Member",
-        period: "2023 - 2024",
-        iconType: "gdg",
+        title: "Natural Green",
+        subtitle: "Desarrollador de Sistema POS",
+        description: "Integración de facturación electrónica SRI y despliegue en Railway.",
+        period: "2026",
+        iconType: "naturalgreen",
       },
       {
         id: "exp-3",
-        title: "Raion Internship",
-        subtitle: "Front-End Developer Intern",
-        period: "2024",
-        iconType: "raion",
+        title: "RespiTrack",
+        subtitle: "Desarrollador Web",
+        description: "Sistema de historiales clínicos y recetas para terapia respiratoria.",
+        period: "2026",
+        iconType: "respitrack",
       },
     ],
 

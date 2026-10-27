@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FileText, Code, GraduationCap, Briefcase, Award, Trophy, Sparkles, Calendar } from './Icons';
 import { portfolioContent } from '../data/content';
+import ResumeModal from './ResumeModal';
 
 /**
  * Componente About (Sobre Mí)
@@ -20,6 +21,7 @@ import { portfolioContent } from '../data/content';
  */
 export default function About() {
   const { about } = portfolioContent;
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const educationList = about.education || [];
   const experienceList = about.experience || [];
   const statsList = about.stats || [];
@@ -45,12 +47,43 @@ export default function About() {
             <GraduationCap className="w-6 h-6 text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]" />
           </div>
         );
+      case 'gemini':
+      case 'google-ai':
+        return (
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#1b1035] via-[#0f172a] to-[#0a1530] border border-cyan-400/35 flex items-center justify-center shrink-0 shadow-lg shadow-purple-950/50 group-hover:border-cyan-300 group-hover:shadow-[0_0_22px_rgba(34,211,238,0.4)] transition-all duration-300">
+            <Sparkles className="w-6 h-6 text-cyan-300 drop-shadow-[0_0_10px_rgba(34,211,238,0.7)]" />
+          </div>
+        );
       case 'school':
         return (
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#122244] to-[#0a1226] border border-yellow-500/30 flex items-center justify-center shrink-0 shadow-lg shadow-blue-950/60 group-hover:border-yellow-400/50 group-hover:shadow-[0_0_20px_rgba(234,179,8,0.3)] transition-all duration-300">
-            <div className="w-8 h-8 rounded-full bg-blue-600/30 border border-yellow-400/50 flex items-center justify-center">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#1e1b2e] to-[#0c0d18] border border-yellow-500/30 flex items-center justify-center shrink-0 shadow-lg shadow-blue-950/60 group-hover:border-yellow-400/50 group-hover:shadow-[0_0_20px_rgba(234,179,8,0.3)] transition-all duration-300">
+            <div className="w-8 h-8 rounded-full bg-yellow-500/15 border border-yellow-400/40 flex items-center justify-center">
               <Award className="w-4 h-4 text-yellow-300" />
             </div>
+          </div>
+        );
+      case 'cimacodex':
+        return (
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#0e2246] to-[#061024] border border-blue-500/40 flex items-center justify-center shrink-0 shadow-lg shadow-blue-950/60 group-hover:border-blue-400 group-hover:shadow-[0_0_22px_rgba(59,130,246,0.45)] transition-all duration-300">
+            <Code className="w-6 h-6 text-cyan-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.6)]" />
+          </div>
+        );
+      case 'naturalgreen':
+        return (
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#062419] to-[#02130c] border border-emerald-500/40 flex items-center justify-center shrink-0 shadow-lg shadow-emerald-950/60 group-hover:border-emerald-400 group-hover:shadow-[0_0_22px_rgba(16,185,129,0.45)] transition-all duration-300">
+            <svg className="w-6 h-6 text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.6)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+              <path d="M3 6h18" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+          </div>
+        );
+      case 'respitrack':
+        return (
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#082632] to-[#03131a] border border-teal-500/40 flex items-center justify-center shrink-0 shadow-lg shadow-teal-950/60 group-hover:border-teal-400 group-hover:shadow-[0_0_22px_rgba(20,184,166,0.45)] transition-all duration-300">
+            <svg className="w-6 h-6 text-teal-300 drop-shadow-[0_0_10px_rgba(20,184,166,0.6)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg>
           </div>
         );
       case 'hology':
@@ -133,15 +166,14 @@ export default function About() {
 
             {/* Botón: Ver Currículum */}
             <div className="pt-2">
-              <a
-                href={about.resumeButton.href}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={() => setIsResumeModalOpen(true)}
                 className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-sm sm:text-base text-white bg-gradient-to-r from-blue-600 to-[#2563eb] hover:from-blue-500 hover:to-blue-600 shadow-[0_0_25px_rgba(37,99,235,0.45)] hover:shadow-[0_0_35px_rgba(37,99,235,0.7)] transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer"
               >
                 <FileText className="w-4 h-4 text-white/90 group-hover:scale-110 transition-transform duration-200" />
                 <span>{about.resumeButton.text}</span>
-              </a>
+              </button>
             </div>
           </div>
 
@@ -204,7 +236,7 @@ export default function About() {
               {educationList.map((item) => (
                 <div
                   key={item.id}
-                  className="group relative flex items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-[#080f22]/70 hover:bg-[#0c1630]/85 border border-blue-500/15 hover:border-blue-400/40 backdrop-blur-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.22)] hover:-translate-y-1"
+                  className="group relative flex items-start gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-[#080f22]/70 hover:bg-[#0c1630]/85 border border-blue-500/15 hover:border-blue-400/40 backdrop-blur-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.22)] hover:-translate-y-1"
                 >
                   {/* Resplandor ambiental al pasar el ratón */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -214,13 +246,19 @@ export default function About() {
 
                   {/* Información textual */}
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-white font-bold text-base sm:text-lg leading-snug tracking-tight group-hover:text-blue-200 transition-colors truncate">
+                    <h4 className="text-white font-bold text-base sm:text-lg leading-snug tracking-tight group-hover:text-blue-200 transition-colors">
                       {item.title}
                     </h4>
-                    <p className="text-slate-300 text-xs sm:text-sm font-normal mt-0.5 truncate">
+                    <p className="text-slate-300 text-xs sm:text-sm font-normal mt-0.5 leading-snug">
                       {item.subtitle}
                     </p>
-                    <p className="text-slate-400/90 text-xs font-mono tracking-wide mt-1.5 flex items-center gap-1.5">
+                    {item.description && (
+                      <p className="text-slate-400 text-xs mt-1 leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
+                    <p className="text-slate-400/90 text-xs font-mono tracking-wide mt-2 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-blue-400/80 shrink-0" />
                       <span>{item.period}</span>
                     </p>
                   </div>
@@ -239,7 +277,7 @@ export default function About() {
               {experienceList.map((item) => (
                 <div
                   key={item.id}
-                  className="group relative flex items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-[#080f22]/70 hover:bg-[#0c1630]/85 border border-blue-500/15 hover:border-blue-400/40 backdrop-blur-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.22)] hover:-translate-y-1"
+                  className="group relative flex items-start gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-[#080f22]/70 hover:bg-[#0c1630]/85 border border-blue-500/15 hover:border-blue-400/40 backdrop-blur-xl transition-all duration-300 hover:shadow-[0_0_30px_rgba(37,99,235,0.22)] hover:-translate-y-1"
                 >
                   {/* Resplandor ambiental al pasar el ratón */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 via-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -253,14 +291,20 @@ export default function About() {
                       {item.title}
                     </h4>
                     {item.extraTitle && (
-                      <p className="text-white/85 text-xs sm:text-sm font-medium leading-snug truncate">
+                      <p className="text-white/85 text-xs sm:text-sm font-medium leading-snug">
                         {item.extraTitle}
                       </p>
                     )}
-                    <p className="text-slate-300 text-xs sm:text-sm font-normal mt-0.5 truncate">
+                    <p className="text-blue-300/95 font-medium text-xs sm:text-sm mt-0.5 leading-snug">
                       {item.subtitle}
                     </p>
-                    <p className="text-slate-400/90 text-xs font-mono tracking-wide mt-1.5 flex items-center gap-1.5">
+                    {item.description && (
+                      <p className="text-slate-300/85 text-xs sm:text-sm mt-1 leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
+                    <p className="text-slate-400/90 text-xs font-mono tracking-wide mt-2 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-blue-400/80 shrink-0" />
                       <span>{item.period}</span>
                     </p>
                   </div>
@@ -304,6 +348,13 @@ export default function About() {
         </div>
 
       </div>
+
+      {/* Modal interactivo para previsualizar y descargar el currículum */}
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+        pdfUrl={about.resumeButton.href}
+      />
     </section>
   );
 }
