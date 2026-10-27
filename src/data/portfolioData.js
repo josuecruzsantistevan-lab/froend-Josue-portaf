@@ -116,44 +116,210 @@ export const projectsList = [
       'Búsqueda rápida de pacientes por cédula o nombre',
       'Panel de métricas con estadísticas de consultas realizadas'
     ],
+    thumbnail: '/projects/respitrack/2-dashboard-inicio.png',
+    images: [
+      {
+        url: '/projects/respitrack/1-login.png',
+        title: 'Inicio de Sesión y Autenticación Segura',
+        description: 'Acceso restringido para especialistas en terapia respiratoria con control de credenciales y seguridad médica.'
+      },
+      {
+        url: '/projects/respitrack/2-dashboard-inicio.png',
+        title: 'Panel Principal y Métricas Clínicas en Tiempo Real',
+        description: 'Métricas de pacientes registrados, consultas del día y accesos directos para agilizar la jornada médica.'
+      },
+      {
+        url: '/projects/respitrack/3-nuevo-paciente-identificacion.png',
+        title: 'Admisión de Paciente - Datos de Identificación',
+        description: 'Formulario de registro clínico con validación de número de cédula, nombres y cálculo automático de edad.'
+      },
+      {
+        url: '/projects/respitrack/4-contacto-observaciones.png',
+        title: 'Ficha de Contacto y Observaciones Clínicas Permanentes',
+        description: 'Registro de canales de contacto, dirección y cuadro de antecedentes (alergias y condiciones preexistentes).'
+      },
+      {
+        url: '/projects/respitrack/5-listado-pacientes.png',
+        title: 'Directorio de Pacientes con Búsqueda Reactiva',
+        description: 'Buscador instantáneo por cédula o apellido con visualización rápida de consultas y expedientes.'
+      },
+      {
+        url: '/projects/respitrack/6-perfil-paciente.png',
+        title: 'Expediente Integral y Ficha del Paciente',
+        description: 'Vista consolidada con datos personales, contacto, edad calculada automáticamente y observaciones permanentes.'
+      },
+      {
+        url: '/projects/respitrack/7-historial-consultas.png',
+        title: 'Línea de Tiempo de Consultas y Tratamientos',
+        description: 'Historial cronológico con fecha, motivo de consulta, observaciones de evolución y recetas previas.'
+      },
+      {
+        url: '/projects/respitrack/8-nueva-consulta-diagnostico.png',
+        title: 'Registro de Consulta - Diagnóstico y Hallazgos',
+        description: 'Módulo de ingreso ágil para motivo de atención, fecha y hallazgos clínicos de la terapia respiratoria.'
+      },
+      {
+        url: '/projects/respitrack/9-prescripcion-receta.png',
+        title: 'Prescripción Médica y Recomendaciones Terapéuticas',
+        description: 'Emisión de medicamentos con posología, indicaciones especiales y ejercicios respiratorios para el paciente.'
+      }
+    ],
     demoUrl: '#',
     githubUrl: '#'
   },
   {
     id: 'universal-gym',
-    title: 'Universal Gym WebApp',
-    subtitle: 'Plataforma Integral de Gestión de Gimnasios',
-    shortDesc: 'Aplicación web para control de acceso de miembros, vencimiento de membresías, venta de pases diarios y administración de caja.',
-    fullDesc: 'Sistema web moderno creado para optimizar la administración diaria de gimnasios y centros de entrenamiento. Automatiza el seguimiento de planes mensuales y trimestrales, emite alertas de vencimiento para renovación y gestiona los ingresos por tickets diarios.',
+    title: 'Universal Gym - Gym Pro System',
+    subtitle: 'Plataforma Integral de Gestión de Gimnasios y Control de Acceso',
+    shortDesc: 'Software de recepción deportiva para check-in en tiempo real, control de vigencias de membresías, venta de pases diarios y flujo de caja.',
+    fullDesc: 'Sistema web moderno de alto rendimiento diseñado para la administración operativa de gimnasios y centros fitness. Incluye un módulo de check-in ultrarrápido con alerta visual de membresías VIP o vencidas, gestión automatizada de planes (diario, semanal, mensual, trimestral y personalizado), cobro exprés de suplementos/snacks y arqueo de caja con desglose por métodos de pago.',
     tags: ['React', 'Tailwind CSS', 'Vite', 'JavaScript (ES6+)'],
     category: 'Frontend / WebApp',
     year: '2025 - 2026',
     status: 'Completado',
     features: [
-      'Control de acceso de usuarios y validación de membresías activas',
-      'Lógica de vigencia y vencimiento automático de planes',
-      'Módulo de venta de tickets diarios y productos complementarios',
-      'Reporte diario de ingresos y flujo de caja administrativo',
-      'Diseño responsivo optimizado para tablets en recepción'
+      'Recepción y check-in en tiempo real con validación instantánea de membresías',
+      'Directorio de atletas con filtros por planes y alertas de vencimiento',
+      'Módulo de cobro de pase diario ($2) con check-in automatizado de 1 clic',
+      'POS de caja rápida para suplementos deportivos, bebidas isotónicas y snacks',
+      'Arqueo de caja diario con desglose por efectivo, transferencia y tarjeta',
+      'Panel de personalización de marca (nombre, eslogan, precios y operador)'
+    ],
+    thumbnail: '/projects/universal-gym/1-recepcion-checkin.png',
+    images: [
+      {
+        url: '/projects/universal-gym/1-recepcion-checkin.png',
+        title: 'Recepción y Control de Acceso en Tiempo Real',
+        description: 'Búsqueda instantánea por cédula o nombre con validación de membresía VIP activa, días de vigencia y registro de asistencia.'
+      },
+      {
+        url: '/projects/universal-gym/2-clientes-membresias.png',
+        title: 'Directorio de Atletas y Control de Vigencias',
+        description: 'Gestión centralizada con filtros inteligentes por tipo de plan (Diario, Semanal, Mensual), alertas por vencer y vencidos.'
+      },
+      {
+        url: '/projects/universal-gym/3-acciones-clientes-renovacion.png',
+        title: 'Gestión de Acciones y Renovación de Membresías',
+        description: 'Acciones directas para ver perfil, renovar suscripción con cálculo automático de fechas y auditoría de atletas.'
+      },
+      {
+        url: '/projects/universal-gym/4-caja-movimientos-arqueo.png',
+        title: 'Caja Diaria, Arqueo de Ingresos y Flujo Financiero',
+        description: 'Métricas de recaudación en vivo desglosadas por planes, pases diarios ($2), snacks y métodos de pago.'
+      },
+      {
+        url: '/projects/universal-gym/5-ingreso-rapido-snacks.png',
+        title: 'POS Rápido de Suplementos, Bebidas y Snacks',
+        description: 'Punto de venta exprés para botellas de agua ($1), batidos de proteína ($3.5), bebidas energéticas y accesorios deportivos.'
+      },
+      {
+        url: '/projects/universal-gym/6-registro-nuevo-cliente.png',
+        title: 'Alta de Nuevo Cliente y Asignación de Plan',
+        description: 'Registro con DNI, WhatsApp, asignación de plan mensual/anual y cálculo instantáneo de fecha de vencimiento.'
+      },
+      {
+        url: '/projects/universal-gym/7-catalogo-planes-precios.png',
+        title: 'Catálogo Flexible de Planes de Entrenamiento',
+        description: 'Soporte para pases diarios ($2), semanas ($8), meses ($20), trimestres ($50), anualidades ($180) y planes VIP personalizados.'
+      },
+      {
+        url: '/projects/universal-gym/8-metodos-pago.png',
+        title: 'Múltiples Métodos de Cobro y Facturación',
+        description: 'Procesamiento ágil en Efectivo, Transferencia Bancaria y Tarjetas de Débito/Crédito con registro automático en caja.'
+      },
+      {
+        url: '/projects/universal-gym/9-cobro-pase-diario.png',
+        title: 'Cobro de Pase Diario ($2) con Check-in Automático',
+        description: 'Flujo ágil de 1 clic para visitantes que simultáneamente registra el cobro en caja e ingresa la asistencia a sala.'
+      },
+      {
+        url: '/projects/universal-gym/10-configuracion-marca.png',
+        title: 'Personalización de Marca y Parámetros del Gimnasio',
+        description: 'Configuración global de nombre comercial, eslogan, precios base de pases, hidratación y operador de turno.'
+      }
     ],
     demoUrl: '#',
     githubUrl: '#'
   },
   {
     id: 'utb-asistencia',
-    title: 'Sistema de Control de Asistencia UTB',
-    subtitle: 'Taller de Prevención de Ingeniería Social',
-    shortDesc: 'Prototipo universitario interactivo para registro y control de asistencia en tiempo real durante talleres de seguridad informática.',
-    fullDesc: 'Desarrollado para la Universidad Técnica de Babahoyo con motivo de las jornadas de concienciación en ciberseguridad. Facilitó el registro digital de estudiantes y la validación inmediata de presencia para la posterior emisión de certificados.',
-    tags: ['React', 'CSS3', 'JavaScript', 'HTML5'],
-    category: 'Académico / Seguridad',
-    year: '2025',
+    title: 'Control de Asistencias - Vinculación UTB',
+    subtitle: 'Prevención de Ingeniería Social (Provincia de Los Ríos)',
+    shortDesc: 'Sistema web de gestión académica para el control de asistencia en tiempo real, registro territorial de participantes y reportes con KPIs.',
+    fullDesc: 'Desarrollado para la Universidad Técnica de Babahoyo (UTB) en el marco del proyecto de vinculación comunitaria "Protegiendo a la provincia de Los Ríos de la Ingeniería Social". Gestiona integralmente la admisión de participantes por cantón, programación de capacitaciones de ciberseguridad (phishing, hacking ético, contraseñas), asignación de instructores y control de asistencia con KPIs estadísticos para la posterior emisión de certificados.',
+    tags: ['JavaScript (ES6+)', 'HTML5', 'CSS3', 'Gestión Académica'],
+    category: 'Académico / Vinculación',
+    year: '2025 - 2026',
     status: 'Implementado',
     features: [
-      'Registro rápido de asistencia con validación de matrícula universitaria',
-      'Filtrado y búsqueda de participantes en tiempo real',
-      'Exportación de listas para entrega de certificados',
-      'Diseño ligero de carga ultrarrápida sin dependencias pesadas'
+      'Control de asistencia en tiempo real con validación inmediata (SI / NO)',
+      'Registro territorial de participantes clasificados por cantones y roles',
+      'Planificación de capacitaciones de ciberseguridad y cronograma de talleres',
+      'Acreditación de facilitadores, docentes y ponentes universitarios',
+      'Panel de reportes y métricas con tarjetas KPI de concurrencia'
+    ],
+    thumbnail: '/projects/sistema-control-asistencias/11-reportes-kpis.png',
+    images: [
+      {
+        url: '/projects/sistema-control-asistencias/1-inicio-dashboard.png',
+        title: 'Panel de Inicio y Pilares del Proyecto',
+        description: 'Plataforma oficial del proyecto de vinculación: Vinculación Social, Seguridad contra Ingeniería Social y Gestión de Recursos.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/2-menu-gestion-participantes.png',
+        title: 'Gestión Integral y Admisión de Participantes',
+        description: 'Formulario de registro con validación de cédula, tipo de actor (Estudiante / Ciudadano) y cantón de procedencia.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/3-listado-participantes.png',
+        title: 'Directorio Territorial de Participantes',
+        description: 'Control de asistentes categorizados por cantones de Los Ríos (Babahoyo, Mocache, Montalvo) con acciones de edición.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/4-planificacion-talleres.png',
+        title: 'Planificación de Talleres de Ciberseguridad',
+        description: 'Programación de capacitaciones en temáticas de seguridad informática (Phishing, Suplantación, Contraseñas) y modalidad.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/5-cronograma-talleres.png',
+        title: 'Cronograma Académico y Estado de Capacitaciones',
+        description: 'Agenda oficial con código de taller, tema técnico, facilitador responsable, fecha, hora y estado de ejecución.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/6-registro-facilitadores.png',
+        title: 'Alta y Registro de Facilitadores e Instructores',
+        description: 'Formulario de acreditación de ponentes y docentes con especialidad técnica (Hacking Ético, UTB) y credenciales.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/7-equipo-instructores.png',
+        title: 'Directorio del Equipo de Facilitadores UTB',
+        description: 'Listado de instructores responsables, áreas de experiencia en seguridad y filiación institucional.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/8-registro-asistencia.png',
+        title: 'Módulo Dinámico de Toma de Asistencia',
+        description: 'Selección ágil de taller y participante con validación de presencia física (SI / NO) y campo de observaciones.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/9-listado-oficial-asistencia.png',
+        title: 'Acta Oficial de Asistencia con Estados Visuales',
+        description: 'Registro consolidado con insignias cromáticas de asistencia (SI / NO), observaciones pedagógicas y control de auditoría.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/10-consulta-participantes.png',
+        title: 'Filtros Avanzados y Consulta de Participantes',
+        description: 'Buscador multicriterio por cédula, nombre, tipo de actor y cantón para auditorías y seguimiento ágil.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/11-reportes-kpis.png',
+        title: 'Reporte Estadístico de Asistencias y KPIs en Tiempo Real',
+        description: 'Métricas cuantitativas con conteo de inscritos, asistencias confirmadas y ausencias para entrega de certificados.'
+      },
+      {
+        url: '/projects/sistema-control-asistencias/12-consulta-facilitadores.png',
+        title: 'Directorio y Consulta Rápida de Facilitadores',
+        description: 'Búsqueda reactiva de instructores del proyecto por número de cédula o nombre completo.'
+      }
     ],
     demoUrl: '#',
     githubUrl: '#'

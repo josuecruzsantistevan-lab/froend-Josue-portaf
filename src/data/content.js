@@ -18,12 +18,12 @@ export const portfolioContent = {
     titleLine2: "Into Reality",
     // Typewriter roles list
     roles: [
-      "Front-End Developer",
+      "Full-Stack Developer",
       "React & UI Specialist",
-      "Creative Web Designer",
+      "Node.js & REST APIs",
     ],
     // Short bio in Spanish
-    bio: "Desarrollador Front-End apasionado por transformar ideas en productos digitales intuitivos, elegantes y de alto rendimiento. Especializado en React, diseño web moderno y experiencias interactivas.",
+    bio: "Desarrollador Full Stack Junior apasionado por transformar ideas en aplicaciones web completas, intuitivas y de alto rendimiento. Con experiencia en React, diseño moderno e integración de servicios y APIs eficientes.",
     // Action buttons
     buttons: {
       primary: {
@@ -117,19 +117,19 @@ export const portfolioContent = {
       {
         id: "stat-projects",
         label: "PROJECTS",
-        value: 6,
+        value: 4,
         icon: "code",
       },
       {
         id: "stat-certificates",
         label: "CERTIFICATES",
-        value: 5,
+        value: 4,
         icon: "certificate",
       },
       {
         id: "stat-awards",
         label: "AWARDS",
-        value: 4,
+        value: 3,
         icon: "award",
       },
     ],

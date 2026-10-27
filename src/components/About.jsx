@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FileText, Code, GraduationCap, Briefcase, Award, Trophy, Sparkles, Calendar } from './Icons';
 import { portfolioContent } from '../data/content';
+import { projectsList, certificatesList, awardsList } from '../data/portfolioData';
 import ResumeModal from './ResumeModal';
 
 /**
@@ -24,7 +25,28 @@ export default function About() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const educationList = about.education || [];
   const experienceList = about.experience || [];
-  const statsList = about.stats || [];
+  
+  // Sincronización dinámica de métricas reales con los datos del portafolio
+  const statsList = [
+    {
+      id: "stat-projects",
+      label: "PROJECTS",
+      value: projectsList?.length || 4,
+      icon: "code",
+    },
+    {
+      id: "stat-certificates",
+      label: "CERTIFICATES",
+      value: certificatesList?.length || 4,
+      icon: "certificate",
+    },
+    {
+      id: "stat-awards",
+      label: "AWARDS",
+      value: awardsList?.length || 3,
+      icon: "award",
+    },
+  ];
 
   // Manejo de desplazamiento suave hacia el portafolio
   const handleScrollToProjects = (e) => {
